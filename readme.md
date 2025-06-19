@@ -6,10 +6,11 @@ Este projeto representa o trabalho final da disciplina de **Introdução a Siste
 
 O objetivo do trabalho era demonstrar a capacidade de utilizar uma Inteligência Artificial para desenvolver uma aplicação web completa, do início ao fim. Todo o código, desde o backend em Node.js até à interface reativa em React, foi gerado através de uma conversa interativa com o **Google Gemini**.
 
+O meu papel neste caso era de guiar a IA e fazer os prompts e testar as funcionalidades, já eu tenho conhecimento básico em C, HTML, CSS e JS
 
 **Este trabalho foi feito inteiramente com inteligência artificial, e o estudante não precisou escrever manualmente nenhuma linha de código.**
 
-A conversa completa que deu origem a este projeto pode ser encontrada neste link: [**Histórico da Conversa com o Gemini**](https://g.co/gemini/share/2cc85d689f2e)
+A conversa completa que deu origem a este projeto pode ser encontrada neste link: [**Histórico da Conversa com o Gemini**](http://docs.google.com/https://g.co/gemini/share/2cc85d689f2e)
 
 ### **Tecnologias Utilizadas**
 
@@ -21,7 +22,7 @@ A conversa completa que deu origem a este projeto pode ser encontrada neste link
 ## **Funcionalidades Principais**
 
 * Autenticação de utilizadores (registo e login com JWT)  
-* CRUD completo (Criar, Ler, Atualizar, Excluir) para favoritos e categorias com suporte para subcategorias.  
+* CRUD completo para favoritos e categorias com suporte para subcategorias.  
 * Busca dinâmica por título de favorito.  
 * Interface reativa com Modo Escuro.  
 * Barra lateral expansível e redimensionável.
@@ -35,9 +36,9 @@ Siga estes passos para configurar e rodar o projeto localmente.
 * [Node.js](https://nodejs.org/) (versão 18 ou superior)  
 * [MySQL](https://dev.mysql.com/downloads/mysql/)
 
-### **1. Clonar o Repositório**
+### **1\. Clonar o Repositório**
 
-#### No terminal, digite:  git clone https://github.com/gb1456v/Gerenciador-de-favoritos-2 
+1.    No terminal, digite: git clone https://github.com/gb1456v/Gerenciador-de-favoritos-2
 
 ### **2\. Configurar o Banco de Dados**
 
