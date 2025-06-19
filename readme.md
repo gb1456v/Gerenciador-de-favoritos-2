@@ -23,9 +23,8 @@ A conversa completa que gerou este projeto pode ser encontrada neste [link do pr
 -   Interface reativa com Modo Escuro
 -   Barra lateral redimensionávela
 ## Como Instalar e Rodar o Projeto
-tiva com configura paraé-requisitos
+# Pré-requisitos
 
 -   [Node.js](https://nodejs.org/) (versão 18 o superior)
 -   [MySQL](https://dev.mysql.com/downloads/msql/)
-
- [MySQL](https://dev.mysql.com/downloads/mysql/)[https://github.com/seu-usuaro/gerenciador-de-f [https://github.com/seu-usuario/gerenciador-de-favoritos.git](https://github.com/seu-usuario/gerenciador-de-favoritos.git)nco de Dados
+# Link para parte da conversa com o gemini: https://g.co/gemini/share/25b1ef5e2b5e
