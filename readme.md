@@ -27,7 +27,3 @@ A conversa parcial que gerou este projeto pode ser encontrada neste [link do pro
 
 -   [Node.js](https://nodejs.org/) (versão 18 o superior)
 -   [MySQL](https://dev.mysql.com/downloads/msql/)
-<<<<<<< HEAD
-=======
-   Link para parte da conversa com o gemini: https://g.co/gemini/share/25b1ef5e2b5e
->>>>>>> a4ee5c0586252c63e66b9ea5f317fa62906ff013
