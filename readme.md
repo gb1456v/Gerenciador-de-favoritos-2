@@ -6,11 +6,6 @@ Este projeto representa o trabalho final da disciplina de **Introdução a Siste
 
 O objetivo do trabalho era demonstrar a capacidade de utilizar uma Inteligência Artificial para desenvolver uma aplicação web completa, do início ao fim. Todo o código, desde o backend em Node.js até à interface reativa em React, foi gerado através de uma conversa interativa com o **Google Gemini**.
 
-O papel do estudante neste processo foi atuar como um gestor de projeto e engenheiro de qualidade, focando em:
-
-* **Definir os Requisitos:** Descrever as funcionalidades, o design e o comportamento desejado para a aplicação.  
-* **Testar e Depurar:** Executar o código gerado, identificar erros, e comunicar os problemas de forma clara à IA.  
-* **Guiar a Refatoração:** Solicitar melhorias na estrutura, segurança e usabilidade do código.
 
 **Este trabalho foi feito inteiramente com inteligência artificial, e o estudante não precisou escrever manualmente nenhuma linha de código.**
 
