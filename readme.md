@@ -9,7 +9,7 @@ O objetivo do trabalho era demonstrar a capacidade de utilizar uma Inteligência
 
 **Este trabalho foi feito inteiramente com inteligência artificial, e o estudante não precisou escrever manualmente nenhuma linha de código.**
 
-A conversa completa que deu origem a este projeto pode ser encontrada neste link: [**Histórico da Conversa com o Gemini**](http://docs.google.com/https://g.co/gemini/share/2cc85d689f2e)
+A conversa completa que deu origem a este projeto pode ser encontrada neste link: [**Histórico da Conversa com o Gemini**](https://g.co/gemini/share/2cc85d689f2e)
 
 ### **Tecnologias Utilizadas**
 
