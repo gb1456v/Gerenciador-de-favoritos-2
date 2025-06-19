@@ -1,6 +1,6 @@
 # **Gerenciador de Favoritos Full-Stack**
 
-Este projeto representa o trabalho final da disciplina de **Introdução a Sistemas de Informação**, do curso de **Sistemas de Informação** da **Universidade Federal de Santa Maria (UFSM)**. Demorei em torno de uns 5 dias para realizar o trabalho pois em alguns momentos eu pedia uma coisa pro Gemini e ele respondia o que ele já tinha respondido anteriormente mesmo eu usando a versão Pro.
+Este projeto é o meu trabalho final da disciplina de **Introdução a Sistemas de Informação**, do curso de **Sistemas de Informação** da **Universidade Federal de Santa Maria (UFSM)**. Demorei em torno de uns 5 dias para realizar o trabalho pois em alguns momentos eu pedia uma coisa pro Gemini e ele respondia o que ele já tinha respondido anteriormente mesmo eu usando a versão Pro.
 
 ## **Sobre o Projeto**
 
