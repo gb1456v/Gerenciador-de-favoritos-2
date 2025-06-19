@@ -42,21 +42,20 @@ Siga estes passos para configurar e rodar o projeto localmente.
 
 ### **1\. Clonar o Repositório**
 
-git clone \[https://github.com/\](https://github.com/)\[seu-usuario\]/\[nome-do-repositorio\].git  
-cd \[nome-do-repositorio\]
+### No terminal, digite:  git clone https://github.com/gb1456v/Gerenciador-de-favoritos-2 
 
 ### **2\. Configurar o Banco de Dados**
 
-1. Aceda ao seu cliente MySQL (ex: mysql \-u root \-p).  
-2. Execute o ficheiro schema.sql para criar o banco de dados e as tabelas:  
+1. Abra seu cliente MySQL através do comando  mysql \-u root \-p  
+2. Execute o arquivo schema.sql para criar o banco de dados e as tabelas:  
    source schema.sql;
 
 3. Saia do cliente MySQL.
 
 ### **3\. Configurar Variáveis de Ambiente**
 
-1. Na pasta raiz do projeto, crie uma cópia do ficheiro .env.example e renomeie-a para .env.  
-2. Abra o ficheiro .env e preencha com as suas credenciais do MySQL e uma chave secreta para JWT.
+1. Na pasta raiz do projeto, crie uma cópia do arquivo .env.example e renomeie-o para .env.  
+2. Abra o arquivo .env e preencha com as suas credenciais do MySQL e uma chave secreta para JWT.
 
 ### **4\. Instalar Dependências**
 
@@ -79,4 +78,4 @@ Você precisará de dois terminais abertos.
 * **No Terminal 2 (dentro da pasta** client**):**  
   npm run dev
 
-Acesse http://localhost:5173 (ou o endereço fornecido pelo Site) no seu navegador.
+Acesse http://localhost:5173 (ou o endereço fornecido pelo Vite) no seu navegador.
