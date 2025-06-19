@@ -8,7 +8,7 @@ O objetivo do trabalho era demonstrar a capacidade de utilizar uma Inteligência
 
 O meu papel neste caso era de guiar a IA e fazer os prompts e testar as funcionalidades, já eu tenho conhecimento básico em C, HTML, CSS e JS
 
-**Este trabalho foi feito inteiramente com inteligência artificial, e eu não precisei escrever manualmente nenhuma linha de código.**
+**Este trabalho foi feito inteiramente com inteligência artificial e eu não precisei escrever manualmente nenhuma linha de código.**
 
 A conversa completa que deu origem a este projeto pode ser encontrada neste link: [**Conversa com o Gemini**](https://g.co/gemini/share/8809752baf5a)
 
