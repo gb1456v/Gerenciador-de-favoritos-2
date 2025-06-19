@@ -71,7 +71,7 @@ Você precisará de dois terminais abertos.
 * **No Terminal 1 (na pasta raiz):**  
   node server.js
 
-* **No Terminal 2 (dentro da pasta** client**):**  
+* **No Terminal 2 (dentro da pasta *client* na pasta raiz do projeto):**  
   npm run dev
 
-Acesse http://localhost:5173 (ou o endereço fornecido pelo Vite) no seu navegador.
+Acesse o endereço fornecido pelo Vite no seu navegador.
