@@ -1,0 +1,38 @@
+# Ficheiro para ignorar ficheiros e pastas do controlo de versões do Git
+
+# # # Dependências e Ficheiros de Build # # #
+# Ignora a pasta que contém todos os pacotes do npm
+node_modules/
+# Ignora a pasta de distribuição do frontend gerada pelo Vite
+client/dist/
+
+# # # Ficheiros de Configuração Sensíveis # # #
+# Ignora o ficheiro de variáveis de ambiente que contém senhas e segredos
+.env
+
+# # # Ficheiros de Log e Depuração # # #
+# Ignora ficheiros de log do npm e outros
+npm-debug.log*
+yarn-error.log
+yarn-debug.log
+pnpm-debug.log*
+
+# # # Ficheiros do Sistema Operacional # # #
+# Ficheiros do macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Ficheiros do Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# # # Ficheiros de Editor de Código # # #
+# Ficheiros do VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
