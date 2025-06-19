@@ -6,10 +6,9 @@ import { Login } from './components/Login.jsx';
 import { BookmarkFormModal } from './components/BookmarkFormModal.jsx';
 import { CategoryFormModal } from './components/CategoryFormModal.jsx';
 import { ConfirmModal } from './components/ConfirmModal.jsx';
-import { Icon } from './components/Icon.jsx';
+import { Icon } from './components/Icon.jsx'; // <-- ESTA É A LINHA QUE FOI ADICIONADA
 import * as api from './api.js';
 
-// Hook customizado para "debouncing" (atrasar a execução de uma função)
 function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
   useEffect(() => {
@@ -24,35 +23,25 @@ function useDebounce(value, delay) {
 }
 
 export default function App() {
-  // --- ESTADO DE AUTENTICAÇÃO ---
   const [token, setToken] = useState(() => localStorage.getItem('authToken'));
-  
-  // --- ESTADO DOS DADOS ---
   const [bookmarks, setBookmarks] = useState([]);
   const [categories, setCategories] = useState([]);
-  
-  // --- ESTADOS DA INTERFACE ---
   const [isLoading, setIsLoading] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(() => window.matchMedia('(prefers-color-scheme: dark)').matches);
-  
-  // --- ESTADO DA BARRA LATERAL (CORRIGIDO) ---
-  // Recupera a largura salva ou usa um padrão. Se for 0, considera fechada.
   const [sidebarWidth, setSidebarWidth] = useState(() => {
     const savedWidth = parseInt(localStorage.getItem('sidebarWidth'), 10);
     return savedWidth === 0 ? 0 : (savedWidth || 256);
   });
-
   const [modalState, setModalState] = useState({ type: null, data: null });
-  
-  // --- ESTADOS DE FILTRO ---
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategoryId, setActiveCategoryId] = useState(null);
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
-  // Função para buscar todos os dados
   const fetchAllData = useCallback(async () => {
-    if (!token) return setIsLoading(false);
-    
+    if (!token) {
+      setIsLoading(false);
+      return;
+    }
     try {
       setIsLoading(true);
       const [bookmarksData, categoriesData] = await Promise.all([
@@ -75,11 +64,8 @@ export default function App() {
     document.documentElement.classList.toggle('dark', isDarkMode);
   }, [isDarkMode]);
 
-  // Salva a largura da sidebar no localStorage sempre que ela muda (e não está fechada)
   useEffect(() => {
-    if (sidebarWidth > 0) {
-      localStorage.setItem('sidebarWidth', sidebarWidth);
-    }
+    localStorage.setItem('sidebarWidth', sidebarWidth);
   }, [sidebarWidth]);
 
   const handleLoginSuccess = (newToken) => {
@@ -100,20 +86,25 @@ export default function App() {
   };
   
   const handleToggleSidebar = () => {
-    // Se a barra estiver fechada (ou muito pequena), abre para a largura salva.
-    // Se estiver aberta, fecha (largura 0).
     if (sidebarWidth < 50) {
       setSidebarWidth(parseInt(localStorage.getItem('sidebarWidth'), 10) || 256);
     } else {
       setSidebarWidth(0);
     }
   };
-
-  const handleDeleteItem = async () => {
+  
+  const openDeleteModal = (item, type) => {
+    setModalState({ type: 'confirmDelete', data: { item, type } });
+  };
+  
+  const handleConfirmDelete = async () => {
     const { item, type } = modalState.data;
     try {
-      if (type === 'bookmark') await api.deleteBookmark(item.id);
-      else if (type === 'category') await api.deleteCategory(item.id);
+      if (type === 'bookmark') {
+        await api.deleteBookmark(item.id);
+      } else if (type === 'category') {
+        await api.deleteCategory(item.id);
+      }
       handleSaveSuccess();
     } catch (error) {
       alert(`Erro ao excluir: ${error.message}`);
@@ -132,13 +123,13 @@ export default function App() {
           width={sidebarWidth}
           setWidth={setSidebarWidth}
           categories={categories}
-          onAddCategory={() => setModalState({ type: 'categoryForm' })}
-          onAddSubCategory={(parentId) => setModalState({ type: 'categoryForm', data: { parentId } })}
-          onDeleteCategory={(category) => setModalState({ type: 'confirmDelete', data: { item: category, type: 'category' } })}
           activeCategoryId={activeCategoryId}
           onSelectCategory={setActiveCategoryId}
+          onAddCategory={() => setModalState({ type: 'categoryForm' })}
+          onAddSubCategory={(parentId) => setModalState({ type: 'categoryForm', data: { parentId } })}
+          onEditCategory={(category) => setModalState({ type: 'categoryForm', data: { categoryToEdit: category }})}
+          onDeleteCategory={(category) => openDeleteModal(category, 'category')}
         />
-        
         <div className="flex-1 flex flex-col overflow-hidden">
           <Header 
             onMenuClick={handleToggleSidebar}
@@ -152,15 +143,24 @@ export default function App() {
           <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 dark:bg-gray-900">
             <div className="container mx-auto px-6 py-8">
               {isLoading ? (
-                <p className="text-center text-gray-500">Carregando...</p>
+                <p className="text-center text-gray-500">A carregar...</p>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
-                  {bookmarks.map(bookmark => 
-                    <BookmarkCard 
-                      key={bookmark.id} 
-                      bookmark={bookmark} 
-                      onDelete={(bm) => setModalState({ type: 'confirmDelete', data: { item: bm, type: 'bookmark' } })}
-                    />
+                  {bookmarks.length > 0 ? (
+                    bookmarks.map(bookmark => 
+                      <BookmarkCard 
+                        key={bookmark.id} 
+                        bookmark={bookmark} 
+                        onEdit={(bm) => setModalState({ type: 'bookmarkForm', data: { bookmarkToEdit: bm } })}
+                        onDelete={(bm) => openDeleteModal(bm, 'bookmark')}
+                      />
+                    )
+                  ) : (
+                    <div className="col-span-full text-center py-16">
+                        <Icon name="search" size="xl" className="mx-auto text-gray-300 dark:text-gray-600"/>
+                        <h3 className="mt-2 text-sm font-semibold text-gray-900 dark:text-white">Nenhum favorito encontrado</h3>
+                        <p className="mt-1 text-sm text-gray-500">Tente ajustar a sua busca ou adicione um novo favorito.</p>
+                    </div>
                   )}
                 </div>
               )}
@@ -169,9 +169,9 @@ export default function App() {
         </div>
       </div>
       
-      <BookmarkFormModal isOpen={modalState.type === 'bookmarkForm'} onClose={closeModal} categories={categories} onSaveSuccess={handleSaveSuccess} preselectedCategoryId={modalState.data?.preselectedCategoryId} />
-      <CategoryFormModal isOpen={modalState.type === 'categoryForm'} onClose={closeModal} categories={categories} onSaveSuccess={handleSaveSuccess} parentId={modalState.data?.parentId} />
-      <ConfirmModal isOpen={modalState.type === 'confirmDelete'} onClose={closeModal} onConfirm={handleDeleteItem} title={`Excluir ${modalState.data?.type === 'bookmark' ? 'Favorito' : 'Categoria'}`}>
+      <BookmarkFormModal isOpen={modalState.type === 'bookmarkForm'} onClose={closeModal} categories={categories} onSaveSuccess={handleSaveSuccess} bookmarkToEdit={modalState.data?.bookmarkToEdit} preselectedCategoryId={modalState.data?.preselectedCategoryId} />
+      <CategoryFormModal isOpen={modalState.type === 'categoryForm'} onClose={closeModal} categories={categories} onSaveSuccess={handleSaveSuccess} parentId={modalState.data?.parentId} categoryToEdit={modalState.data?.categoryToEdit} />
+      <ConfirmModal isOpen={modalState.type === 'confirmDelete'} onClose={closeModal} onConfirm={handleConfirmDelete} title={`Excluir ${modalState.data?.type === 'bookmark' ? 'Favorito' : 'Categoria'}`}>
           <p>Tem a certeza que quer excluir "<strong>{modalState.data?.item?.title || modalState.data?.item?.name}</strong>"?</p>
           {modalState.data?.type === 'category' && <p className="mt-2 text-sm">Todas as subcategorias e favoritos contidos nela também serão excluídos.</p>}
           <p className="mt-2 text-xs font-bold">Esta ação não pode ser desfeita.</p>

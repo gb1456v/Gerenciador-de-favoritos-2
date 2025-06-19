@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useCallback, useRef } from 'react';
 import { Icon } from './Icon.jsx';
 
-// Função para construir a árvore de categorias
+// Função auxiliar para construir a árvore de categorias a partir de uma lista simples
 const buildCategoryTree = (categories) => {
   const tree = [];
   const map = new Map(categories.map(cat => [cat.id, { ...cat, children: [] }]));
@@ -14,11 +14,17 @@ const buildCategoryTree = (categories) => {
     }
   });
 
+  // Ordena as categorias e subcategorias alfabeticamente
+  tree.sort((a, b) => a.name.localeCompare(b.name));
+  map.forEach(node => {
+    node.children.sort((a, b) => a.name.localeCompare(b.name));
+  });
+
   return tree;
 };
 
 // Componente recursivo para renderizar cada item (categoria ou subcategoria)
-const CategoryItem = ({ category, level = 0, onSelectCategory, onAddSubCategory, onDeleteCategory, activeCategoryId }) => {
+const CategoryItem = ({ category, level = 0, onSelectCategory, onAddSubCategory, onEditCategory, onDeleteCategory, activeCategoryId }) => {
   const [isOpen, setIsOpen] = useState(true);
   const isActive = activeCategoryId === category.id;
   const hasChildren = category.children && category.children.length > 0;
@@ -26,30 +32,29 @@ const CategoryItem = ({ category, level = 0, onSelectCategory, onAddSubCategory,
   const activeClasses = isActive ? 'bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-white' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300';
 
   return (
-    <li className="group">
+    <li className="group/item">
       <a 
         href="#" 
         onClick={(e) => { e.preventDefault(); onSelectCategory(category.id); }} 
         className={`flex items-center gap-2 w-full text-left px-2 py-2 rounded-lg text-sm font-medium transition-colors ${activeClasses}`}
-        // Este padding dinâmico agora é a única fonte de recuo para o texto
-        style={{ paddingLeft: `${0.5 + level * 1.25}rem` }}
+        style={{ paddingLeft: `${0.75 + level * 0.8}rem` }}
       >
         <button onClick={(e) => { e.stopPropagation(); if (hasChildren) setIsOpen(!isOpen); }} className={`p-0.5 rounded ${!hasChildren && 'invisible'}`}>
             <Icon name={isOpen ? 'folder-minus' : 'folder-plus'} size="sm" className="transition-transform"/>
         </button>
         <span className="flex-1 truncate">{category.name}</span>
-        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-            <button title="Adicionar Subcategoria" onClick={(e) => { e.stopPropagation(); onAddSubCategory(category.id); }} className="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700"><Icon name="folder-plus" size="sm"/></button>
+        <div className="flex items-center gap-1 opacity-0 group-hover/item:opacity-100 transition-opacity">
+            <button title="Editar Categoria" onClick={(e) => { e.stopPropagation(); onEditCategory(category); }} className="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700"><Icon name="edit" size="sm"/></button>
+            {level === 0 && (
+              <button title="Adicionar Subcategoria" onClick={(e) => { e.stopPropagation(); onAddSubCategory(category.id); }} className="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700"><Icon name="folder-plus" size="sm"/></button>
+            )}
             <button title="Excluir Categoria" onClick={(e) => { e.stopPropagation(); onDeleteCategory(category); }} className="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700"><Icon name="trash" size="sm" className="hover:text-red-500"/></button>
         </div>
       </a>
       
       {hasChildren && isOpen && (
-        // ---- CORREÇÃO APLICADA AQUI ----
-        // A lista de subcategorias agora só tem a margem para alinhar a linha vertical
-        // e um pequeno padding para dar espaço entre a linha e o conteúdo da subcategoria.
-        <ul className="pt-1 pl-4 ml-3.5 border-l border-gray-200 dark:border-gray-700">
-          {category.children.map(child => <CategoryItem key={child.id} category={child} level={level + 1} onSelectCategory={onSelectCategory} onAddSubCategory={onAddSubCategory} onDeleteCategory={onDeleteCategory} activeCategoryId={activeCategoryId} />)}
+        <ul className="pt-1 border-l border-gray-200 dark:border-gray-700 ml-3.5 pl-3">
+          {category.children.map(child => <CategoryItem key={child.id} category={child} level={level + 1} onSelectCategory={onSelectCategory} onAddSubCategory={onAddSubCategory} onEditCategory={onEditCategory} onDeleteCategory={onDeleteCategory} activeCategoryId={activeCategoryId} />)}
         </ul>
       )}
     </li>
@@ -57,7 +62,7 @@ const CategoryItem = ({ category, level = 0, onSelectCategory, onAddSubCategory,
 };
 
 
-export function Sidebar({ width, setWidth, categories, onAddCategory, onSelectCategory, onDeleteCategory, onAddSubCategory, activeCategoryId }) {
+export function Sidebar({ width, setWidth, categories, onAddCategory, onSelectCategory, onEditCategory, onDeleteCategory, onAddSubCategory, activeCategoryId }) {
     const isResizing = useRef(false);
     const categoryTree = useMemo(() => buildCategoryTree(categories), [categories]);
 
@@ -108,7 +113,7 @@ export function Sidebar({ width, setWidth, categories, onAddCategory, onSelectCa
           </div>
           <ul>
             <li><a href="#" onClick={(e) => { e.preventDefault(); onSelectCategory(null); }} className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium ${!activeCategoryId ? 'bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-white' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300'}`}><Icon name="bookmark" size="sm" />Todos os Favoritos</a></li>
-            {categoryTree.map(cat => <CategoryItem key={cat.id} category={cat} onSelectCategory={onSelectCategory} onAddSubCategory={onAddSubCategory} onDeleteCategory={onDeleteCategory} activeCategoryId={activeCategoryId} />)}
+            {categoryTree.map(cat => <CategoryItem key={cat.id} category={cat} level={0} onSelectCategory={onSelectCategory} onAddSubCategory={onAddSubCategory} onEditCategory={onEditCategory} onDeleteCategory={onDeleteCategory} activeCategoryId={activeCategoryId} />)}
           </ul>
          </nav>
       </div>
