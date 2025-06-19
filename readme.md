@@ -40,9 +40,9 @@ Siga estes passos para configurar e rodar o projeto localmente.
 * [Node.js](https://nodejs.org/) (versão 18 ou superior)  
 * [MySQL](https://dev.mysql.com/downloads/mysql/)
 
-### **1\. Clonar o Repositório**
+### **1. Clonar o Repositório**
 
-### No terminal, digite:  git clone https://github.com/gb1456v/Gerenciador-de-favoritos-2 
+#### No terminal, digite:  git clone https://github.com/gb1456v/Gerenciador-de-favoritos-2 
 
 ### **2\. Configurar o Banco de Dados**
 
