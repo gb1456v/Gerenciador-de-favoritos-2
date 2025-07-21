@@ -1,14 +1,14 @@
 # **Gerenciador de Favoritos Full-Stack**
 
-Este projeto é o meu trabalho final da disciplina de **Introdução a Sistemas de Informação**, do curso de **Sistemas de Informação** da **Universidade Federal de Santa Maria (UFSM)**. Demorei em torno de uns 5 dias para realizar o trabalho pois em alguns momentos eu pedia uma coisa pro Gemini e ele respondia o que ele já tinha respondido anteriormente mesmo eu usando a versão Pro.
+Este projeto é o meu trabalho final da disciplina de **Introdução a Sistemas de Informação**, do curso de **Sistemas de Informação** da **Universidade Federal de Santa Maria (UFSM)**. Demorei em torno de uns 5 dias para realizar o trabalho pois em alguns momentos eu pedia uma coisa para o Gemini e ele respondia algo totalmente errado ou que já tinha respondido anteriormente.
 
 ## **Sobre o Projeto**
 
-O objetivo do trabalho era demonstrar a capacidade de utilizar uma Inteligência Artificial para desenvolver uma aplicação web completa, do início ao fim. Todo o código, desde o backend em Node.js até à interface reativa em React, foi gerado através de uma conversa interativa com o **Google Gemini**.
+O objetivo do trabalho era demonstrar a capacidade de utilizar uma Inteligência Artificial para desenvolver uma aplicação web completa, do início ao fim, somente com IA. Todo o código, desde o backend em Node.js até à interface em React juntamente com o banco de dados, foi gerado através de uma conversa interativa com a IA **Google Gemini**. Até mesmo a escolha das tecnologias foi feita pela IA
 
-O meu papel neste caso era de guiar a IA e fazer os prompts e testar as funcionalidades, já eu tenho conhecimento básico em C, HTML, CSS e JS
+O meu papel foi apenas de guiar a IA e fazer os prompts e testar as funcionalidades, já eu tenho somente conhecimento básico em C.
 
-**Este trabalho foi feito inteiramente com inteligência artificial e eu não precisei escrever manualmente nenhuma linha de código.**
+**Este trabalho foi feito inteiramente com inteligência artificial e eu não escrevi nenhuma linha de código.**
 
 A conversa completa que deu origem a este projeto pode ser encontrada neste link: [**Conversa com o Gemini**](https://g.co/gemini/share/8809752baf5a)
 
