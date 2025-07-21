@@ -38,7 +38,7 @@ Siga estes passos para configurar e rodar o projeto localmente.
 
 ### **1\. Clonar o Repositório**
 
-1.    No terminal, digite: git clone https://github.com/gb1456v/Gerenciador-de-favoritos-2
+1.    No terminal, digite: git clone https://github.com/gb1456v/Gerenciador-de-favoritos
 
 ### **2\. Configurar o Banco de Dados**
 
